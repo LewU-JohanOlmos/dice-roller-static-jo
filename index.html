@@ -58,6 +58,8 @@
 		<div id="fetch-2plus2-result"></div>
 		<br><br>
 
+		
+
 		Add two integers on the Node.js server.<br />
 		<select onchange="addTwoIntegers()" id="x-value">
 			<option>1</option>
@@ -77,6 +79,10 @@
 		<button type="button" onclick="calculateBMI()">Calculate BMI</button>
 		<div id="bmi-result"></div>
 		<br><br>
+
+		<button type="button" onclick="rollDice()">Roll Dice (2d6)</button>
+        <div id="dice-result"></div>
+        <br><br>
 
 		<script>
 			let fetchAboutCounter = 0
@@ -133,6 +139,17 @@
 				batmanJSONField.innerHTML = batmanResponseText
 			}
 		</script>
+
+		<script>
+			async function rollDice() {
+            const url = document.getElementById("urlInput").value + "/d6";
+            const response = await fetch(url);
+            const diceResult = await response.json();
+            document.getElementById("dice-result").innerHTML = 
+                "Dice 1: " + diceResult.dice1 + " | Dice 2: " + diceResult.dice2;
+        	}
+		</script>
+		
 
 		<button onclick="testFavoritePlaces()">Favorite Places</button>
 		<div id="favoritePlacesJSON">Favorite Places JSON</div><br /><br />
